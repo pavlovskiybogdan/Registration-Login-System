@@ -1,0 +1,19 @@
+{
+  "name": "test-task",
+  "version": "1.0.0",
+  "description": "Test Task",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --watch --config webpack.config.js"
+  },
+  "author": "Bogdan Pavlovskiy <tsareyvichb@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
