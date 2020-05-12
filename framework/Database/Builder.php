@@ -123,11 +123,7 @@ class Builder extends Component
      */
     private function result(array $queryResult)
     {
-        $result = [];
-
-        foreach ($queryResult as $res) {
-            $result[] = $this->associate($res);
-        }
+        $result = array_map(fn($res) => $this->associate($res), $queryResult);
 
         return count($result) === 1 ? $result[0] : $result;
     }
