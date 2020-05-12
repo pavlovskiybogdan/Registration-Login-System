@@ -7,38 +7,29 @@ const ACTION = '/register-action';
 
 class Register {
     init() {
-        this.map();
         this.addCountryOptions();
 
-        if (this.selectors.form) {
+        if (this.map.form) {
             this.formOnSubmit();
         }
 
-        if (this.selectors.avatar) {
+        if (this.map.avatar) {
             this.avatarOnChange();
         }
     }
 
-    map() {
-        this.selectors = {
-            form: id('register-form'),
-            imagePreview: id('image-preview'),
-            avatar: id('avatar')
-        }
-    }
-
     avatarOnChange() {
-        this.selectors.avatar.addEventListener('change', () => {
-            if (this.selectors.avatar.files) {
+        this.map.avatar.addEventListener('change', () => {
+            if (this.map.avatar.files) {
                 const reader = new FileReader();
                 reader.onload = (e) => this.showImage(e.target.result);
-                reader.readAsDataURL(this.selectors.avatar.files[0]);
+                reader.readAsDataURL(this.map.avatar.files[0]);
             }
         })
     }
 
     formOnSubmit() {
-        this.selectors.form.addEventListener('submit', async (e) => {
+        this.map.form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             if (await this.isValidEmail() && this.validate()) {
@@ -51,32 +42,32 @@ class Register {
     }
 
     async sendRegistrationRequest() {
-        return await axios.post(ACTION, new FormData(this.selectors.form), {
+        return await axios.post(ACTION, new FormData(this.map.form), {
             headers: { 'Content-Type': 'multipart/form-data' }
         });
     }
 
     async isValidEmail() {
-        const { data } = await axios.post('/check-user-email', { email: this.selectors.form.email.value });
+        const { data } = await axios.post('/check-user-email', { email: this.map.form.email.value });
 
         if (data.length === 0) {
-            this.selectors.form.email.safe();
+            this.map.form.email.safe();
         } else {
-            this.selectors.form.email.nextElementSibling.innerText = 'This email is already been taken';
-            this.selectors.form.email.error();
+            this.map.form.email.nextElementSibling.innerText = 'This email is already been taken';
+            this.map.form.email.error();
         }
 
         return data.length === 0;
     }
 
     addCountryOptions() {
-        if (this.selectors.form.country) {
+        if (this.map.form.country) {
             fetch(COUNTRIES_API_LINK)
                 .then(response => response.json())
                 .then((data) => {
                     data.map((country) => {
                         const option = this.createOption(country.name);
-                        this.selectors.form.country.appendChild(option);
+                        this.map.form.country.appendChild(option);
                     });
                 });
         }
@@ -121,8 +112,16 @@ class Register {
     }
 
     showImage(src) {
-        this.selectors.imagePreview.style.display = 'block';
-        this.selectors.imagePreview.querySelector('img').setAttribute('src', src);
+        this.map.imagePreview.style.display = 'block';
+        this.map.imagePreview.querySelector('img').setAttribute('src', src);
+    }
+
+    get map() {
+        return {
+            form: id('register-form'),
+            imagePreview: id('image-preview'),
+            avatar: id('avatar')
+        }
     }
 }
 
