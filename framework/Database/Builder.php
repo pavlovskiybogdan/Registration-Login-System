@@ -5,6 +5,10 @@ namespace Framework\Database;
 use Framework\Exceptions\QueryException;
 use Framework\Component;
 
+/**
+ * Class Builder
+ * @package Framework\Database
+ */
 class Builder extends Component
 {
     /**

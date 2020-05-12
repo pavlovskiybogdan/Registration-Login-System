@@ -4,6 +4,10 @@ namespace Framework\Exceptions;
 
 use Throwable;
 
+/**
+ * Class QueryException
+ * @package Framework\Exceptions
+ */
 class QueryException extends \Exception
 {
     const ERROR_MESSAGE = 'Incorrect syntax';

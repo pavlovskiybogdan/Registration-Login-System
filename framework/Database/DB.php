@@ -5,6 +5,10 @@ namespace Framework\Database;
 use PDO;
 use PDOStatement;
 
+/**
+ * Class DB
+ * @package Framework\Database
+ */
 class DB
 {
     /**

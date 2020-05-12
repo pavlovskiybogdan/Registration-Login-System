@@ -7,6 +7,10 @@ use Framework\Localization\Localization;
 use Framework\Helpers\Request;
 use Framework\Helpers\Mailer;
 
+/**
+ * Class Application
+ * @package Framework
+ */
 class Application
 {
     /**

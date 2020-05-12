@@ -2,6 +2,10 @@
 
 namespace Framework\View;
 
+/**
+ * Class View
+ * @package Framework\View
+ */
 class View
 {
     /**
