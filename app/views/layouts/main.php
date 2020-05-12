@@ -5,7 +5,7 @@
  */
 
 use Framework\View\View;
-use Framework\Localization\Localization;
+use Framework\Application;
 
 ?>
 
@@ -36,8 +36,8 @@ use Framework\Localization\Localization;
 
     <div class="choose-language-block closed" id="lang-block">
         <ul>
-            <li class="<?= Localization::isEnglishLang() ? 'chosen' : '' ?>" data-lang="en_US">English</li>
-            <li class="<?= Localization::isRussianLang() ? 'chosen' : '' ?>" data-lang="ru_RU"><?= _('Russian') ?></li>
+            <li class="<?= Application::$app->localization->isEnglishLang ? 'chosen' : '' ?>" data-lang="en_US">English</li>
+            <li class="<?= Application::$app->localization->isRussianLang ? 'chosen' : '' ?>" data-lang="ru_RU"><?= _('Russian') ?></li>
         </ul>
     </div>
 

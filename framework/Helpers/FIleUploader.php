@@ -2,6 +2,10 @@
 
 namespace Framework\Helpers;
 
+/**
+ * Class FIleUploader
+ * @package Framework\Helpers
+ */
 class FIleUploader
 {
     const AVATAR_PATH = '/images/avatars/';
@@ -25,10 +29,9 @@ class FIleUploader
      * @param $file
      * @return string
      */
-    public static function uploadAvatar($file) : string
+    public static function uploadAvatar($file): string
     {
-        $self = new static();
-        return $self->uploadImage($file, self::AVATAR_PATH);
+        return (new static())->uploadImage($file, self::AVATAR_PATH);
     }
 
     /**
@@ -36,7 +39,7 @@ class FIleUploader
      * @param string $path
      * @return string
      */
-    private function uploadImage($imageFile, $path = '/images') : string
+    private function uploadImage($imageFile, $path = '/images'): string
     {
         $size = getimagesize($imageFile['tmp_name']);
         $temp  = explode('.', $imageFile['name']);

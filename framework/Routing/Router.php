@@ -2,10 +2,13 @@
 
 namespace Framework\Routing;
 
+/**
+ * Class Router
+ * @package Framework\Routing
+ */
 class Router
 {
     /**
-     * Routes array
      * @var array
      */
     private $routes = [];
@@ -45,7 +48,7 @@ class Router
      * @param string $path
      * @return bool
      */
-    private function isChangePasswordRoute(string $path) : bool
+    private function isChangePasswordRoute(string $path): bool
     {
         return preg_match('/\/change-password\/[0-9a-f]{15}/', $_SERVER['REQUEST_URI'])
             && $path === 'change-password';

@@ -16,7 +16,7 @@ class Session implements SessionInterface
      * @param string $value
      * @return string
      */
-    public static function set(string $key, string $value) : string
+    public static function set(string $key, string $value): string
     {
         if (isset($_SESSION)) {
             return $_SESSION[$key] = $value;
@@ -29,7 +29,7 @@ class Session implements SessionInterface
      * @param string $key
      * @return string
      */
-    public static function get(string $key) : string
+    public static function get(string $key): string
     {
         if (isset($_SESSION) && !empty($_SESSION[$key])) {
             return $_SESSION[$key];
@@ -43,7 +43,7 @@ class Session implements SessionInterface
      * @param string $key
      * @return bool
      */
-    public static function delete(string $key) : bool
+    public static function delete(string $key): bool
     {
         if (self::has($key)) {
             unset($_SESSION[$key]);
@@ -66,7 +66,7 @@ class Session implements SessionInterface
      * Destroy session
      * @return bool
      */
-    public static function destroy() : bool
+    public static function destroy(): bool
     {
         if (isset($_SESSION)) {
             $_SESSION = array();

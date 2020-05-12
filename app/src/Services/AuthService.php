@@ -52,7 +52,7 @@ class AuthService
      * @return bool
      * @throws QueryException
      */
-    public static function login() : bool
+    public static function login(): bool
     {
         $user = new User();
         $credentials = Application::$app->request->body;
@@ -75,7 +75,7 @@ class AuthService
      * @return bool
      * @throws QueryException
      */
-    public static function sendResetPasswordLink() : bool
+    public static function sendResetPasswordLink(): bool
     {
         $user = new User();
         $params = Application::$app->request->bodyParams;
@@ -116,7 +116,7 @@ class AuthService
     /**
      * @return bool
      */
-    public static function isUserLoggedIn() : bool
+    public static function isUserLoggedIn(): bool
     {
         return (bool)Session::get('user_logged');
     }

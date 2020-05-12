@@ -8,7 +8,6 @@ use Framework\Application;
 use Framework\View\View;
 use Framework\Helpers\Session;
 use Framework\Controller\Controller;
-use Framework\Localization\Localization;
 use Framework\Exceptions\QueryException;
 
 class HomeController extends Controller
@@ -91,10 +90,9 @@ class HomeController extends Controller
      */
     public function changeLanguage()
     {
-        $localization = new Localization();
-
         if (Application::$app->request->isPost) {
-            $localization->setLanguage(Application::$app->request->bodyParams->lang);
+            $lang = Application::$app->request->bodyParams->lang;
+            Application::$app->localization->setLanguage($lang);
         }
 
         return View::render404();

@@ -14,9 +14,9 @@ class Model extends QueryBuilder
      * @param array $data
      * @return $this
      */
-    public function associate(array $data) : self 
+    public function associate(array $data): self
     {
-        foreach($data as $key => $value) {
+        foreach ($data as $key => $value) {
             $this->{$key} = trim(htmlspecialchars($value));
         }
         

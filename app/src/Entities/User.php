@@ -7,7 +7,6 @@ use Framework\Exceptions\QueryException;
 
 /**
  * Class User
- *
  * @property int $id
  * @property string $firstname
  * @property string $lastname
@@ -18,7 +17,6 @@ use Framework\Exceptions\QueryException;
  * @property string $avatar
  * @property string $token
  * @property string $fullname
- * @package App\src\Entities
  */
 class User extends Model
 {
@@ -72,7 +70,7 @@ class User extends Model
      * @return $this
      * @throws QueryException
      */
-    public function findByEmail(string $email) : self
+    public function findByEmail(string $email): self
     {
         return $this::table('users')->where('email', $email);
     }
@@ -82,7 +80,7 @@ class User extends Model
      * @return User|array
      * @throws QueryException
      */
-    public function findByToken(string $token) : self
+    public function findByToken(string $token): self
     {
         return $this::table('users')->where('token', $token);
     }
@@ -90,7 +88,7 @@ class User extends Model
     /**
      * @return string
      */
-    public function avatarPath() : string
+    public function avatarPath(): string
     {
         $partial = explode('/app', $this->avatar);
         return 'app' . $partial[1];

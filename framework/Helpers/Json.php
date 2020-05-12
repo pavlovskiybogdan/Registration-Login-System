@@ -4,6 +4,7 @@ namespace Framework\Helpers;
 
 /**
  * Class Json
+ * @package Framework\Helpers
  */
 class Json {
     /**

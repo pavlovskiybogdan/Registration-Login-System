@@ -2,6 +2,10 @@
 
 namespace Framework;
 
+/**
+ * Class Component
+ * @package Framework
+ */
 class Component
 {
     /**
@@ -12,6 +16,7 @@ class Component
     public function __get($name)
     {
         $getter = 'get' . $name;
+
         if (method_exists($this, $getter)) {
             return $this->$getter();
         }

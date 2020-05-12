@@ -3,8 +3,13 @@
 namespace Framework\Localization;
 
 use Framework\Helpers\Session;
+use Framework\Component;
 
-class Localization
+/**
+ * Class Localization
+ * @package Framework\Localization
+ */
+class Localization extends Component
 {
     const LANGUAGES = [
       'russian' => 'ru_RU',
@@ -31,10 +36,7 @@ class Localization
         }
     }
 
-    /**
-     * Localization
-     */
-    public function localize() : void
+    public function localize(): void
     {
         putenv('LC_ALL=' . $this->language);
         setlocale(LC_ALL, $this->language, $this->language . '.utf8');
@@ -44,10 +46,10 @@ class Localization
     }
 
     /**
-     * Set interface language
+     * Set the interface language
      * @param $language
      */
-    public function setLanguage($language) : void
+    public function setLanguage($language): void
     {
         Session::set('language', $language);
         $this->language = $language;
@@ -57,7 +59,7 @@ class Localization
     /**
      * @return bool
      */
-    public static function isRussianLang() : bool
+    public static function getIsRussianLang(): bool
     {
         return Session::get('language') === self::LANGUAGES['russian'];
     }
@@ -65,7 +67,7 @@ class Localization
     /**
      * @return bool
      */
-    public static function isEnglishLang() : bool
+    public static function getIsEnglishLang(): bool
     {
         return Session::get('language') === self::LANGUAGES['english'];
     }

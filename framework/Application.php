@@ -32,6 +32,8 @@ class Application
         $localization = new Localization();
         $localization->localize();
 
+        self::$app->localization = $localization;
+
         Router::startRouting();
     }
 

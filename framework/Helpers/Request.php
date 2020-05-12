@@ -18,7 +18,7 @@ class Request extends Component
     /**
      * @return string
      */
-    public function getMethod() : string
+    public function getMethod(): string
     {
         if (!empty($_SERVER['REQUEST_METHOD'])) {
             return $_SERVER['REQUEST_METHOD'];
@@ -30,7 +30,7 @@ class Request extends Component
     /**
      * @return bool
      */
-    public function getIsPost() : bool
+    public function getIsPost(): bool
     {
         return $this->getMethod() === 'POST';
     }
@@ -38,7 +38,7 @@ class Request extends Component
     /**
      * @return bool
      */
-    public function getIsGet() : bool
+    public function getIsGet(): bool
     {
         return $this->getMethod() === 'GET';
     }
@@ -46,7 +46,7 @@ class Request extends Component
     /**
      * @return array
      */
-    public function getPartialUrl() : array
+    public function getPartialUrl(): array
     {
         return explode('/', $_SERVER['REQUEST_URI']);
     }
@@ -68,7 +68,7 @@ class Request extends Component
     /**
      * @return array
      */
-    public function getBody() : array
+    public function getBody(): array
     {
         if(isset($_POST)) {
             return $_POST;
@@ -80,7 +80,7 @@ class Request extends Component
     /**
      * @return array
      */
-    public function files() : array
+    public function files(): array
     {
         if (isset($_FILES)) {
             return $_FILES;
