@@ -56,7 +56,7 @@ class Request extends Component
      */
     public function getBodyParams()
     {
-        $stdin = file_get_contents("php://input");
+        $stdin = file_get_contents('php://input');
 
         if (!empty($stdin)) {
             return json_decode($stdin);

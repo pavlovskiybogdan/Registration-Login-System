@@ -8,7 +8,6 @@ namespace Framework\Helpers;
  */
 class Json {
     /**
-     * Json constructor.
      * @param $message
      */
     public function __construct($message)

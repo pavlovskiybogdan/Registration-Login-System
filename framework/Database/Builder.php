@@ -9,31 +9,24 @@ class Builder extends Component
 {
     /**
      * Connection object
-     * @var DB
      */
-    private $db;
+    private DB $db;
 
     /**
-     * Active table
-     * @var string
+     * Active query table
      */
-    private $table;
+    private string $table;
 
     /**
      * Query parameters
-     * @var array
      */
-    private $values = [];
+    private array $values = [];
 
     /**
      * Query columns
-     * @var array
      */
-    private $columns = [];
+    private array $columns = [];
 
-    /**
-     * Builder constructor
-     */
     public function __construct()
     {
         $this->db = new DB();
@@ -43,7 +36,7 @@ class Builder extends Component
      * @param string $name
      * @return static
      */
-    public static function table(string $name) : self
+    public static function table(string $name): self
     {
         $self = new static();
 
@@ -58,7 +51,7 @@ class Builder extends Component
      * @return array|null
      * @throws QueryException
      */
-    public function insert($values = [])
+    public function insert(array $values = [])
     {
         if (!empty($values)) {
             foreach ($values as $key => $value) {
@@ -67,11 +60,7 @@ class Builder extends Component
             }
 
             $splittedColumns = implode(', ', $this->columns);
-
-            // Safe binding
-            $columns = implode(', ', array_map(function($column) {
-                return ':' . $column;
-            }, $this->columns));
+            $columns = implode(', ', array_map(fn($column): string => ':' . $column, $this->columns));
 
             return $this->db->query(
                 "INSERT INTO $this->table ($splittedColumns) VALUES ($columns)", $values
@@ -87,14 +76,12 @@ class Builder extends Component
      * @return array|null
      * @throws QueryException
      */
-    public function update($values = [])
+    public function update(array $values = [])
     {
         if (!empty($values)) {
-            $splittedValues = array_map(function($value, $key) {
-                return $key . '="' . $value . '"';
-            }, array_values($values), array_keys($values));
-
-            $splittedValues = implode(', ', $splittedValues);
+            $splittedValues = implode(', ', array_map(
+                fn($value, $key): string => $key . '="' . $value . '"', array_values($values), array_keys($values)
+            ));
 
            return $this->db->query("UPDATE $this->table SET $splittedValues WHERE id = :id",[
                'id' => $this->id

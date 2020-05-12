@@ -6,15 +6,13 @@ class View
 {
     /**
      * Current view file
-     * @var string
      */
-    public $currentView;
+    public string $currentView;
 
     /**
      * View variables
-     * @var array
      */
-    public $vars = [];
+    public array $vars = [];
 
     /**
      * Render layout and requested file
@@ -57,7 +55,7 @@ class View
      * Returns main css file path
      * @return string
      */
-    public function cssPath() : string
+    public function cssPath(): string
     {
         return SCRIPT_ROOT . '/app/assets/css/app.css';
     }
@@ -66,7 +64,7 @@ class View
      * Returns main js file path
      * @return string
      */
-    public function jsPath() : string
+    public function jsPath(): string
     {
         return SCRIPT_ROOT . '/app/assets/js/prod/app.js';
     }

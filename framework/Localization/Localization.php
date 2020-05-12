@@ -20,13 +20,9 @@ class Localization extends Component
 
     /**
      * Current interface language
-     * @var string
      */
-    private $language;
+    private string $language;
 
-    /**
-     * Localization constructor.
-     */
     public function __construct()
     {
         $this->language = self::LANGUAGES['english'];
@@ -47,9 +43,9 @@ class Localization extends Component
 
     /**
      * Set the interface language
-     * @param $language
+     * @param string $language
      */
-    public function setLanguage($language): void
+    public function setLanguage(string $language): void
     {
         Session::set('language', $language);
         $this->language = $language;

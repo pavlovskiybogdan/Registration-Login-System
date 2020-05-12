@@ -11,7 +11,6 @@ use Framework\Helpers\Interfaces\SessionInterface;
 class Session implements SessionInterface
 {
     /**
-     * Set new key value session
      * @param string $key
      * @param string $value
      * @return string
@@ -39,7 +38,6 @@ class Session implements SessionInterface
     }
 
     /**
-     * Remove session by key
      * @param string $key
      * @return bool
      */
@@ -57,13 +55,12 @@ class Session implements SessionInterface
      * @param string $key
      * @return bool
      */
-    public static function has(string $key) : bool
+    public static function has(string $key): bool
     {
         return !empty($_SESSION[$key]);
     }
 
     /**
-     * Destroy session
      * @return bool
      */
     public static function destroy(): bool

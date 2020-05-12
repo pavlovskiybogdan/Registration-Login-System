@@ -10,14 +10,10 @@ use Framework\Helpers\Mailer;
 class Application
 {
     /**
-     * Dependencies
-     * @var \stdClass
+     * Dependencies container
      */
-    public static $app;
+    public static \stdClass $app;
 
-    /**
-     * Application constructor.
-     */
     public function __construct()
     {
         self::$app = new \stdClass();

@@ -8,10 +8,7 @@ namespace Framework\Routing;
  */
 class Router
 {
-    /**
-     * @var array
-     */
-    private $routes = [];
+    private array $routes = [];
 
     /**
      * @param string $route
@@ -66,7 +63,7 @@ class Router
             $method = $route['method'];
             return $controller->$method();
         } catch (\Throwable $t) {
-            return $t->getMessage();
+            return exit($t->getMessage());
         }
     }
 }

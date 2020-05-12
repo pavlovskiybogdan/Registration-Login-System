@@ -13,13 +13,9 @@ class FIleUploader
 
     /**
      * Uploaded files directory
-     * @var string
      */
-    private $uploadDir;
+    private string $uploadDir;
 
-    /**
-     * FIleUploader constructor.
-     */
     public function __construct()
     {
         $this->uploadDir = BASE_PATH . '/app/storage';
@@ -52,8 +48,8 @@ class FIleUploader
 
         if (!empty($size)) {
             return move_uploaded_file($imageFile['tmp_name'], $filename) ? $filename : '';
-        } else {
-            return '';
         }
+
+        return '';
     }
 }

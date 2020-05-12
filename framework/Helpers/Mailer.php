@@ -13,18 +13,15 @@ use Swift_Message;
 class Mailer
 {
     /**
-     * @var Swift_SmtpTransport
+     * Current Mailer object
      */
-    private $transport;
+    private Swift_SmtpTransport $transport;
 
     /**
-     * @var string
+     * Admin email for sending notification
      */
-    private $adminEmail;
+    private string $adminEmail;
 
-    /**
-     * Mailer constructor.
-     */
     public function __construct()
     {
         $config = require BASE_PATH . '/app/config/mail.php';

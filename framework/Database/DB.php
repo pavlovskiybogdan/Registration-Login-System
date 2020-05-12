@@ -3,31 +3,29 @@
 namespace Framework\Database;
 
 use PDO;
+use PDOStatement;
 
 class DB
 {
     /**
      * PDO active object
-     * @var PDO
      */
-    private $pdo;
+    private PDO $pdo;
 
     /**
      * Is active connection
-     * @var bool
      */
-    private $isConnected;
+    private bool $isConnected;
 
     /**
      * Current query statement
      */
-    private $statement;
+    private PDOStatement $statement;
 
     /**
      * Query parameters
-     * @var array
      */
-    private $parameters = [];
+    private array $parameters = [];
 
     public function __construct()
     {
@@ -112,7 +110,7 @@ class DB
      * @param string $query
      * @param array $parameters
      * @param int $mode
-     * @return array|null
+     * @return array|int|null
      */
     public function query(
         string $query,
@@ -133,13 +131,5 @@ class DB
         } else {
             return null;
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function lastInsertId()
-    {
-        return $this->statement->lastInsertId();
     }
 }

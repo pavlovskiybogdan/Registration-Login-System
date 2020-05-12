@@ -124,7 +124,7 @@ class AuthService
     /**
      * @param string $email
      */
-    private static function startLoginSession(string $email)
+    private static function startLoginSession(string $email): void
     {
         Session::set('user_logged', 1);
         Session::set('email', $email);

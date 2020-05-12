@@ -82,7 +82,7 @@ class AuthController extends Controller
         return View::render404();
     }
 
-    public function actionLogout() : void
+    public function actionLogout(): void
     {
         Session::destroy();
         $this->redirect('/login');

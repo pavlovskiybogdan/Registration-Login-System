@@ -20,57 +20,22 @@ use Framework\Exceptions\QueryException;
  */
 class User extends Model
 {
-    /**
-     * @var int
-     */
-    public $id;
-
-    /**
-     * @var string
-     */
-    public $firstname;
-
-    /**
-     * @var string
-     */
-    public $lastname;
-
-    /**
-     * @var string
-     */
-    public $email;
-
-    /**
-     * @var string
-     */
-    public $country;
-
-    /**
-     * @var string
-     */
-    public $password;
-
-    /**
-     * @var string;
-     */
-    public $password_confirm;
-
-    /**
-     * @var string
-     */
-    public $avatar;
-
-    /**
-     * @var string
-     */
-    public $token;
+    public int $id;
+    public string $firstname;
+    public string $lastname;
+    public string $email;
+    public string $country;
+    public string $password;
+    public string $password_confirm;
+    public string $avatar;
+    public string $token;
 
     /**
      * @param string $email
-     * @return $this
+     * @return User|array
      * @throws QueryException
      */
-    public function findByEmail(string $email): self
+    public function findByEmail(string $email)
     {
         return $this::table('users')->where('email', $email);
     }
@@ -97,7 +62,7 @@ class User extends Model
     /**
      * @return string
      */
-    public function getFullname() : string
+    public function getFullname(): string
     {
         return $this->firstname . ' ' . $this->lastname;
     }
