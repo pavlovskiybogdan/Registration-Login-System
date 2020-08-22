@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { id } from '../utils';
-import { register } from '../rules';
+import registerFieldsRules from '../rules';
 
 const COUNTRIES_API_LINK = 'https://restcountries.eu/rest/v2/all';
 const ACTION = '/register-action';
@@ -15,6 +15,7 @@ class Register {
       this.avatarOnChange();
     }
   }
+
   avatarOnChange() {
     this.map.avatar.addEventListener('change', () => {
       if (this.map.avatar.files) {
@@ -24,6 +25,7 @@ class Register {
       }
     });
   }
+
   formOnSubmit() {
     this.map.form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -35,11 +37,13 @@ class Register {
       }
     });
   }
+
   async sendRegistrationRequest() {
-    return await axios.post(ACTION, new FormData(this.map.form), {
-      headers: { 'Content-Type': 'multipart/form-data' }
+    return axios.post(ACTION, new FormData(this.map.form), {
+      headers: { 'Content-Type': 'multipart/form-data' },
     });
   }
+
   async isValidEmail() {
     const { data } = await axios.post('/check-user-email', { email: this.map.form.email.value });
     if (data.length === 0) {
@@ -50,20 +54,23 @@ class Register {
     }
     return data.length === 0;
   }
+
   addCountryOptions() {
     if (this.map.form.country) {
       fetch(COUNTRIES_API_LINK)
-        .then(response => response.json())
+        .then((response) => response.json())
         .then((data) => {
-          data.map((country) => {
+          data.forEach((country) => {
             const option = this.createOption(country.name);
             this.map.form.country.appendChild(option);
           });
         });
     }
   }
+
+  // eslint-disable-next-line class-methods-use-this
   validate() {
-    register.rules.forEach((rule, index) => {
+    registerFieldsRules.rules.forEach((rule, index) => {
       const errors = [];
 
       if (
@@ -75,33 +82,37 @@ class Register {
 
       if (
         rule.field.name === 'password'
-        && rule.field.value !== register.rules[index + 1].field.value
+        && rule.field.value !== registerFieldsRules.rules[index + 1].field.value
       ) {
         errors.push('Passwords doesn\'t match');
       }
 
       if (errors.length) {
         rule.field.error();
+        // eslint-disable-next-line no-param-reassign,prefer-destructuring
         rule.field.nextElementSibling.innerText = errors[0];
-      } else {
-        if (rule.field.type === 'text' || rule.field.type === 'password') {
-          rule.field.safe();
-        }
+      } else if (rule.field.type === 'text' || rule.field.type === 'password') {
+        rule.field.safe();
       }
     });
 
-    return !Boolean(document.querySelector('.is-invalid'));
+    return !document.querySelector('.is-invalid');
   }
+
+  // eslint-disable-next-line class-methods-use-this
   createOption(value) {
     const option = document.createElement('option');
     option.innerText = value;
     option.value = value;
     return option;
   }
+
   showImage(src) {
     this.map.imagePreview.style.display = 'block';
     this.map.imagePreview.querySelector('img').setAttribute('src', src);
   }
+
+  // eslint-disable-next-line class-methods-use-this
   get map() {
     return {
       form: id('register-form'),

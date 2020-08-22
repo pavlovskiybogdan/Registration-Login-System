@@ -1,6 +1,6 @@
 {
     "name": "bogdan/test-task",
-    "description": "Test task",
+    "description": "Registration/Authorization system in pure PHP and JavaScript",
     "type": "project",
     "license": "MIT",
     "authors": [

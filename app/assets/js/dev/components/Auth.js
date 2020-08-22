@@ -10,11 +10,16 @@ class Auth {
       this.formSubmitHandler();
     }
   }
+
   formSubmitHandler() {
     this.form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const { data } = await axios.post(ACTION, new FormData(this.form));
-      data ? window.location.href = '/profile' : this.form.email.error();
+      if (data) {
+        window.location.href = '/profile';
+      } else {
+        this.form.email.error();
+      }
     });
   }
 }

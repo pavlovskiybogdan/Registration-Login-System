@@ -10,21 +10,28 @@ class ChangePassword {
       this.formSubmitHandler();
     }
   }
+
   formSubmitHandler() {
     this.form.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (this.isValidData) {
         this.form.password.safe();
         const { data } = await this.resetPassRequestResponse();
-        data ? alert.open() : alert.close();
+        if (data) {
+          alert.open();
+        } else {
+          alert.close();
+        }
       } else {
         this.form.password.error();
       }
-    })
+    });
   }
+
   async resetPassRequestResponse() {
-    return await axios.post(ACTION, new FormData(this.form));
+    return axios.post(ACTION, new FormData(this.form));
   }
+
   get isValidData() {
     const formData = new FormData(this.form);
     return formData.get('password').length > 6

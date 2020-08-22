@@ -14,10 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
   id('change-language-trigger').onclick = () => modal.open(id('lang-block'));
 
   document.querySelectorAll('.choose-language-block ul li').forEach((item) => {
-    item.onclick = function () {
+    // eslint-disable-next-line no-param-reassign
+    item.onclick = function onClick() {
       const { lang } = this.dataset;
       axios.post(CHANGE_LANG_URL, { lang })
         .then(() => window.location.reload());
-    }
-  })
+    };
+  });
 });

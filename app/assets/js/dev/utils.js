@@ -5,7 +5,7 @@ const states = {
 
 const erroredFieldClass = 'is-invalid';
 
-const id = (id) => document.getElementById(id);
+const id = (itemId) => document.getElementById(itemId);
 
 const alert = {
   success: document.querySelector('.alert.alert-success'),
@@ -16,7 +16,7 @@ const alert = {
   close() {
     this.success.classList.remove(states.open);
     this.success.classList.add(states.close);
-  }
+  },
 };
 
 const modal = {
@@ -30,16 +30,16 @@ const modal = {
   overflowOnClick(el, overflow) {
     el.classList.add('closed');
     overflow.remove();
-  }
-}
+  },
+};
 
-HTMLInputElement.prototype.error = function () {
+HTMLInputElement.prototype.error = function error() {
   this.classList.add(erroredFieldClass);
-}
+};
 
-HTMLInputElement.prototype.safe = function () {
+HTMLInputElement.prototype.safe = function safe() {
   this.classList.remove(erroredFieldClass);
-}
+};
 
 export {
   id,

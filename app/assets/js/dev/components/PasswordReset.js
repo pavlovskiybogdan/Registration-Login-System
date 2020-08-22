@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { id, alert } from "../utils";
+import { id, alert } from '../utils';
 
 const ACTION = '/send-link-action';
 
@@ -10,6 +10,7 @@ class PasswordReset {
       this.formSubmitHandler();
     }
   }
+
   formSubmitHandler() {
     this.form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -18,14 +19,17 @@ class PasswordReset {
         : this.triggerError();
     });
   }
+
   triggerError() {
     this.form.email.error();
     alert.close();
   }
+
   successMessage() {
     this.form.email.safe();
     alert.open();
   }
+
   async sendPasswordResetRequest() {
     const { data } = await axios.post(ACTION, { email: this.form.email.value });
     return Boolean(data);
