@@ -1,9 +1,10 @@
+.idea/
 app/assets/js/prod/
 vendor/
 node_modules/
-.idea/
 /storage/
 composer.phar
+.env
 dump.sql
 access.log
 error.log

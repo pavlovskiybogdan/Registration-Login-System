@@ -11,7 +11,7 @@
         <div class="form-group col-md-8">
             <label for="email">E-Mail <?= _('Address') ?></label>
             <input type="email" id="email" name="email" class="form-control" required />
-            <strong class="invalid-feedback"><?= _('This email address doesn\'t exist.') ?></strong>
+            <strong class="invalid-feedback"><?= _('This email address doesnt exist.') ?></strong>
         </div>
         <div class="form-group col-md-8">
             <button type="submit" class="btn btn-dark"><?= _('Reset') ?></button>

@@ -8,13 +8,14 @@ use Framework\Helpers\Session;
 use Framework\Helpers\QueryBuilder;
 use Framework\Helpers\FIleUploader;
 use Framework\Exceptions\QueryException;
+use Exception;
 
 class AuthService
 {
     /**
      * @return array|null
      * @throws QueryException
-     * @throws \Exception
+     * @throws Exception
      */
     public static function create()
     {
@@ -91,7 +92,7 @@ class AuthService
     /**
      * Reset user password and update token
      * @throws QueryException
-     * @throws \Exception
+     * @throws Exception
      */
     public static function changePassword()
     {

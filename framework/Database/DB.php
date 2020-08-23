@@ -38,13 +38,11 @@ class DB
 
     public function connect()
     {
-        $config = require 'app/config/database.php';
-
-        $dsn = 'mysql:dbname='. $config['database'] .';host=' . $config['host'];
+        $dsnString = 'mysql:dbname='. $_ENV['DB_DATABASE'] .';host=' . $_ENV['DB_HOST'];
 
         try {
-            $this->pdo = new PDO($dsn, $config['username'], $config['password'], [
-                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . $config['encode']
+            $this->pdo = new PDO($dsnString, $_ENV['DB_USER'], $_ENV['DB_PASSWORD'], [
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . $_ENV['DB_ENCODE']
             ]);
 
             $this->isConnected = true;
@@ -57,7 +55,7 @@ class DB
      * @param string $query
      * @param array $parameters
      */
-    private function init(string $query, $parameters = [])
+    private function init(string $query, array $parameters = [])
     {
         if(!$this->isConnected) {
             $this->connect();

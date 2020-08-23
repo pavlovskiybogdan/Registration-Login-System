@@ -10,10 +10,11 @@
         }
     ],
     "require": {
-      "ext-json": "*",
-      "ext-pdo": "*",
-      "ext-gettext": "*",
-      "swiftmailer/swiftmailer": "^6.0"
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-gettext": "*",
+        "swiftmailer/swiftmailer": "^6.0",
+        "vlucas/phpdotenv": "^5.1"
     },
     "autoload": {
         "psr-4": {

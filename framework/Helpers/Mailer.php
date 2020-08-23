@@ -24,13 +24,11 @@ class Mailer
 
     public function __construct()
     {
-        $config = require BASE_PATH . '/app/config/mail.php';
+        $this->adminEmail = $_ENV['MAILER_USER'];
 
-        $this->adminEmail = $config['username'];
-
-        $this->transport = (new Swift_SmtpTransport($config['host'], $config['port'], $config['encryption']))
-            ->setUsername($config['username'])
-            ->setPassword($config['password']);
+        $this->transport = (new Swift_SmtpTransport(
+            $_ENV['MAILER_HOST'], $_ENV['MAILER_PORT'], $_ENV['MAILER_ENCRYPTION'])
+        )->setUsername($this->adminEmail)->setPassword($_ENV['MAILER_PASSWORD']);
     }
 
     /**

@@ -57,7 +57,10 @@
         <div class="form-group col-md-12 mt-2">
             <button type="submit" class="btn btn-dark"><?= _('Submit') ?></button>
             <div class="tip mt-3">
-                <span><?= _('Already have account') ?>? <a href="/login"><?= _('Sign in') ?></a></span>
+                <span>
+                    <?= _('Already have account') ?>?
+                    <a href="/login"><?= _('Sign in') ?></a>
+                </span>
             </div>
         </div>
     </form>

@@ -7,7 +7,8 @@ define('SCRIPT_ROOT', 'http://localhost:8080');
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Framework\Application;
+$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-$application = new Application();
+$application = new \Framework\Application();
 $application->start();

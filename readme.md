@@ -22,4 +22,4 @@ Import dump:
 docker exec -i auth-test-task_mysql_1 mysql -uroot -psecret app < dump.sql
 ```
 #### Mailer:
-Mail configuration located at *app/config/mail.php*
+Mail configuration available in *.env* file

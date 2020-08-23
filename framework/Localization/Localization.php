@@ -32,6 +32,9 @@ class Localization extends Component
         }
     }
 
+    /**
+     * Change locale with gettext extension
+     */
     public function localize(): void
     {
         putenv('LC_ALL=' . $this->language);
