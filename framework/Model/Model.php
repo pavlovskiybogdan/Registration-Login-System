@@ -11,12 +11,12 @@ use Framework\Helpers\QueryBuilder;
 class Model extends QueryBuilder
 {
     /**
-     * @param array $data
+     * @param array $modelData
      * @return $this
      */
-    public function associate(array $data): self
+    public function associate(array $modelData): self
     {
-        foreach ($data as $key => $value) {
+        foreach ($modelData as $key => $value) {
             $this->{$key} = trim(htmlspecialchars($value));
         }
         

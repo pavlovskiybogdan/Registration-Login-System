@@ -19,10 +19,8 @@ class AuthService
      */
     public static function create()
     {
-        $entity = new User();
         $files = Application::$app->request->files();
-
-        $user = $entity->associate(Application::$app->request->body);
+        $user = (new User())->associate(Application::$app->request->body);
 
         if ($user->password !== $user->password_confirm) {
             throw new \Error('Invalid properties');
@@ -55,9 +53,8 @@ class AuthService
      */
     public static function login(): bool
     {
-        $user = new User();
         $credentials = Application::$app->request->body;
-        $candidate = $user->findByEmail($credentials['email']);
+        $candidate = (new User())->findByEmail($credentials['email']);
 
         if (empty($candidate->password)) {
             return false;
@@ -78,15 +75,14 @@ class AuthService
      */
     public static function sendResetPasswordLink(): bool
     {
-        $user = new User();
-        $params = Application::$app->request->bodyParams;
-        $candidate = $user->findByEmail($params->email);
+        $bodyParams = Application::$app->request->bodyParams;
+        $candidate = (new User())->findByEmail($bodyParams->email);
 
         if (empty($candidate->token)) {
             return false;
         }
 
-        return Application::$app->mailer->sendResetLink($params->email, $candidate->token);
+        return Application::$app->mailer->sendResetLink($bodyParams->email, $candidate->token);
     }
 
     /**

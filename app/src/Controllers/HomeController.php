@@ -42,10 +42,8 @@ class HomeController extends Controller
      */
     public function renderProfilePage()
     {
-        $model = new User();
-
         if (Session::get('email')) {
-            $user = $model->findByEmail(Session::get('email'));
+            $user = (new User())->findByEmail(Session::get('email'));
         }
 
         if (AuthService::isUserLoggedIn() && !empty($user)) {

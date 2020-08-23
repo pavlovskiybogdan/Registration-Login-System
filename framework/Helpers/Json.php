@@ -6,7 +6,8 @@ namespace Framework\Helpers;
  * Class Json
  * @package Framework\Helpers
  */
-class Json {
+class Json
+{
     /**
      * @param $message
      */

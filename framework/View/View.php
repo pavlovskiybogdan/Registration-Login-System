@@ -16,7 +16,7 @@ class View
     /**
      * View variables
      */
-    public array $vars = [];
+    public array $viewVars = [];
 
     /**
      * Render layout and requested file
@@ -29,7 +29,7 @@ class View
         $self = new static();
 
         $self->currentView = $filename;
-        $self->vars = $args;
+        $self->viewVars = $args;
 
         return include('app/views/layouts/main.php');
     }
@@ -80,7 +80,7 @@ class View
      */
     private function includeFile($filename)
     {
-        extract($this->vars, EXTR_PREFIX_SAME, 'wddx');
+        extract($this->viewVars, EXTR_PREFIX_SAME, 'wddx');
 
         return include('app/views/' . $filename . '.php');
     }

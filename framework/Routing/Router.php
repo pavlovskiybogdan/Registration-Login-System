@@ -15,12 +15,12 @@ class Router
      * @param string $controller
      * @param string $method
      */
-    public function addRoute(string $route, string $controller, string $method) : void
+    public function addRoute(string $route, string $controller, string $method): void
     {
         $this->routes[] = [
           'path' => $route,
           'controller' => $controller,
-          'method' => $method
+          'method' => $method,
         ];
     }
 

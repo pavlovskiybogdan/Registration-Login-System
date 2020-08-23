@@ -10,10 +10,13 @@ use Throwable;
  */
 class QueryException extends \Exception
 {
-    const ERROR_MESSAGE = 'Incorrect syntax';
+    const DEFAULT_ERROR_MESSAGE = 'Incorrect syntax';
 
-    public function __construct($message = self::ERROR_MESSAGE, $code = 0, Throwable $previous = null)
-    {
+    public function __construct(
+        $message = self::DEFAULT_ERROR_MESSAGE,
+        $code = 0,
+        Throwable $previous = null
+    ) {
         parent::__construct($message, $code, $previous);
     }
 }

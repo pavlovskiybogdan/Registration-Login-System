@@ -38,13 +38,13 @@ class FIleUploader
     private function uploadImage($imageFile, $path = '/images'): string
     {
         $size = getimagesize($imageFile['tmp_name']);
-        $temp  = explode('.', $imageFile['name']);
+        $fileNameSegments = explode('.', $imageFile['name']);
 
         $filename = $this->uploadDir
             . $path
             . round(microtime(true))
             . '.'
-            . end($temp);
+            . end($fileNameSegments);
 
         if (!empty($size)) {
             return move_uploaded_file($imageFile['tmp_name'], $filename) ? $filename : '';
