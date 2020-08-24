@@ -1,16 +1,17 @@
 ### Auth test task
 Registration and authorization system in pure PHP and JavaScript.
-#### Setup:
-Install package managers:
+#### Local Setup:
+- Setup .env file (copy from .env.example)
+- Install package managers:
 ```bash
 composer install
 npm install
 ```
-Give permissions:
+- Give permissions:
 ```bash
 make perm
 ```
-Build docker containers:
+- Build docker containers:
 ```bash
 make docker-build
 make docker-up

@@ -7,7 +7,9 @@ const ACTION = '/register-action';
 
 class Register {
   init() {
-    this.addCountryOptions();
+    if (this.map.form.country) {
+      this.addCountryOptions();
+    }
     if (this.map.form) {
       this.formOnSubmit();
     }
@@ -56,16 +58,14 @@ class Register {
   }
 
   addCountryOptions() {
-    if (this.map.form.country) {
-      fetch(COUNTRIES_API_LINK)
-        .then((response) => response.json())
-        .then((data) => {
-          data.forEach((country) => {
-            const option = this.createOption(country.name);
-            this.map.form.country.appendChild(option);
-          });
+    fetch(COUNTRIES_API_LINK)
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((country) => {
+          const option = this.createOption(country.name);
+          this.map.form.country.appendChild(option);
         });
-    }
+      });
   }
 
   // eslint-disable-next-line class-methods-use-this
