@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Framework;
 
-use Framework\Routing\Router;
 use Framework\Localization\Localization;
 use Framework\Helpers\Request;
 use Framework\Helpers\Mailer;
+use Framework\Routing\Router;
 
 /**
  * Class Application

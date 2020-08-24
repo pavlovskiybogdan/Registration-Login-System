@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Framework\Database;
 
 use PDO;
@@ -70,9 +72,9 @@ class DB
                 foreach ($this->parameters as $param => $value) {
                     if(is_int($value[1])) {
                         $type = PDO::PARAM_INT;
-                    } elseif (is_bool($value[1])) {
+                    } else if (is_bool($value[1])) {
                         $type = PDO::PARAM_BOOL;
-                    } elseif (is_null($value[1])) {
+                    } else if (is_null($value[1])) {
                         $type = PDO::PARAM_NULL;
                     } else {
                         $type = PDO::PARAM_STR;
