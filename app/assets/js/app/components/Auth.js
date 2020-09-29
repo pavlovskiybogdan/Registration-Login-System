@@ -1,9 +1,7 @@
-import axios from 'axios';
+import BaseComponent from './BaseComponent';
 import { id } from '../utils';
 
-const ACTION = '/login-action';
-
-class Auth {
+class Auth extends BaseComponent {
   init() {
     this.form = id('login-form');
     if (this.form) {
@@ -14,9 +12,9 @@ class Auth {
   formSubmitHandler() {
     this.form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const { data } = await axios.post(ACTION, new FormData(this.form));
+      const { data } = await axios.post(this.routes.auth.login, new FormData(this.form));
       if (data) {
-        window.location.href = '/profile';
+        window.location.href = this.routes.auth.profile;
       } else {
         this.form.email.error();
       }

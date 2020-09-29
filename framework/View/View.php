@@ -72,15 +72,15 @@ class View
      */
     public function jsPath(): string
     {
-        return SCRIPT_ROOT . '/app/assets/js/prod/app.js';
+        return SCRIPT_ROOT . '/app/assets/js/dist/app.js';
     }
 
     /**
      * Including a view file
-     * @param $filename
+     * @param string $filename
      * @return mixed
      */
-    private function includeFile($filename)
+    private function includeFile(string $filename)
     {
         extract($this->viewVars, EXTR_PREFIX_SAME, 'wddx');
 

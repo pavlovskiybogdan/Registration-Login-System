@@ -1,9 +1,7 @@
-import axios from 'axios';
+import BaseComponent from './BaseComponent';
 import { id, alert } from '../utils';
 
-const ACTION = '/reset-password-action';
-
-class ChangePassword {
+class ChangePassword extends BaseComponent {
   init() {
     this.form = id('change-password-form');
     if (this.form) {
@@ -29,13 +27,13 @@ class ChangePassword {
   }
 
   async resetPassRequestResponse() {
-    return axios.post(ACTION, new FormData(this.form));
+    return axios.post(this.routes.auth.reset, new FormData(this.form));
   }
 
   get isValidData() {
     const formData = new FormData(this.form);
-    return formData.get('password').length > 6
-      && formData.get('password') === formData.get('password_confirm');
+    return (formData.get('password').length > 6
+      && formData.get('password') === formData.get('password_confirm'));
   }
 }
 

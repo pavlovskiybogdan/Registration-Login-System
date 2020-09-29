@@ -1,18 +1,17 @@
-import axios from 'axios';
 import { id } from '../utils';
+import BaseComponent from './BaseComponent';
 import registerFieldsRules from '../rules';
 
-const COUNTRIES_API_LINK = 'https://restcountries.eu/rest/v2/all';
-const ACTION = '/register-action';
-
-class Register {
+export default class Register extends BaseComponent {
   init() {
     if (this.map.form.country) {
       this.addCountryOptions();
     }
+
     if (this.map.form) {
       this.formOnSubmit();
     }
+
     if (this.map.avatar) {
       this.avatarOnChange();
     }
@@ -22,7 +21,7 @@ class Register {
     this.map.avatar.addEventListener('change', () => {
       if (this.map.avatar.files) {
         const reader = new FileReader();
-        reader.onload = (e) => this.showImage(e.target.result);
+        reader.onload = (event) => this.showImage(event.target.result);
         reader.readAsDataURL(this.map.avatar.files[0]);
       }
     });
@@ -34,31 +33,34 @@ class Register {
       if (await this.isValidEmail() && this.validate()) {
         const { status } = await this.sendRegistrationRequest();
         if (status === 200) {
-          window.location.href = '/profile';
+          window.location.href = this.routes.auth.profile;
         }
       }
     });
   }
 
   async sendRegistrationRequest() {
-    return axios.post(ACTION, new FormData(this.map.form), {
+    return axios.post(this.routes.auth.register, new FormData(this.map.form), {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   }
 
   async isValidEmail() {
-    const { data } = await axios.post('/check-user-email', { email: this.map.form.email.value });
+    const email = this.map.form.email.value;
+    const { data } = await axios.post(this.routes.user.checkEmail, { email });
+
     if (data.length === 0) {
       this.map.form.email.safe();
     } else {
       this.map.form.email.nextElementSibling.innerText = 'This email is already been taken';
       this.map.form.email.error();
     }
+
     return data.length === 0;
   }
 
   addCountryOptions() {
-    fetch(COUNTRIES_API_LINK)
+    fetch(this.routes.api.countries)
       .then((response) => response.json())
       .then((data) => {
         data.forEach((country) => {
@@ -121,5 +123,3 @@ class Register {
     };
   }
 }
-
-export default Register;

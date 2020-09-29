@@ -6,6 +6,7 @@
     "HTMLInputElement": "writable",
     "FormData": "readonly",
     "FileReader": "readonly",
-    "fetch": "readonly"
+    "fetch": "readonly",
+    "axios": "readonly"
   }
 }

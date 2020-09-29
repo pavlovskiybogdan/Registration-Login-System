@@ -1,9 +1,7 @@
-import axios from 'axios';
+import BaseComponent from './BaseComponent';
 import { id, alert } from '../utils';
 
-const ACTION = '/send-link-action';
-
-class PasswordReset {
+export default class PasswordReset extends BaseComponent {
   init() {
     this.form = id('password-reset-form');
     if (this.form) {
@@ -14,7 +12,7 @@ class PasswordReset {
   formSubmitHandler() {
     this.form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      return await this.sendPasswordResetRequest()
+      return await this.isSuccessPasswordReset()
         ? this.successMessage()
         : this.triggerError();
     });
@@ -30,10 +28,8 @@ class PasswordReset {
     alert.open();
   }
 
-  async sendPasswordResetRequest() {
-    const { data } = await axios.post(ACTION, { email: this.form.email.value });
+  async isSuccessPasswordReset() {
+    const { data } = await axios.post(this.routes.auth.send, { email: this.form.email.value });
     return Boolean(data);
   }
 }
-
-export default PasswordReset;

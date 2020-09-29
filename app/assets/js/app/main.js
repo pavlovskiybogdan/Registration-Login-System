@@ -2,7 +2,7 @@ import axios from 'axios';
 import routes from './routes';
 import { id, modal } from './utils';
 
-const CHANGE_LANG_URL = '/change-language';
+window.axios = axios;
 
 document.addEventListener('DOMContentLoaded', () => {
   Object.keys(routes).forEach((route) => {
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // eslint-disable-next-line no-param-reassign
     item.onclick = function onClick() {
       const { lang } = this.dataset;
-      axios.post(CHANGE_LANG_URL, { lang })
+      axios.post('/change-language', { lang })
         .then(() => window.location.reload());
     };
   });
