@@ -7,9 +7,6 @@ docker-down:
 docker-build: memory
 	docker-compose up --build -d
 
-assets-install:
-	docker-compose exec npm install
-
 memory:
 	sudo sysctl -w vm.max_map_count=262144
 

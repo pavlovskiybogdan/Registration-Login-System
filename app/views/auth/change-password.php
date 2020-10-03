@@ -10,7 +10,8 @@ use Framework\Application;
     </div>
 
     <div class="alert alert-success closed" role="alert" id="change-password-alert">
-        <?= _("Password was changed.") ?> <a href="/login"><?= _('Login') ?></a> <?= _('in your account') ?>
+        <?= _("Password was changed.") ?>
+        <a href="/login"><?= _('Login') ?></a> <?= _('in your account') ?>
     </div>
 
     <form class="row" id="change-password-form">

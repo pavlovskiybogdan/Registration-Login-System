@@ -1,10 +1,9 @@
-import { id } from '../utils';
-import BaseComponent from './BaseComponent';
-import registerFieldsRules from '../rules';
+import BaseComponent from '../lib/BaseComponent';
+import routes from '../config/routes.config';
 
-export default class Register extends BaseComponent {
+class Register extends BaseComponent {
   init() {
-    if (this.map.form.country) {
+    if (this.map.country) {
       this.addCountryOptions();
     }
 
@@ -33,21 +32,22 @@ export default class Register extends BaseComponent {
       if (await this.isValidEmail() && this.validate()) {
         const { status } = await this.sendRegistrationRequest();
         if (status === 200) {
-          window.location.href = this.routes.auth.profile;
+          window.location.href = routes.auth.profile;
         }
       }
     });
   }
 
   async sendRegistrationRequest() {
-    return axios.post(this.routes.auth.register, new FormData(this.map.form), {
+    return axios.post(routes.auth.register, new FormData(this.map.form), {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   }
 
   async isValidEmail() {
-    const email = this.map.form.email.value;
-    const { data } = await axios.post(this.routes.user.checkEmail, { email });
+    const { data } = await axios.post(routes.user.checkEmail, {
+      email: this.map.form.email.value,
+    });
 
     if (data.length === 0) {
       this.map.form.email.safe();
@@ -60,48 +60,39 @@ export default class Register extends BaseComponent {
   }
 
   addCountryOptions() {
-    fetch(this.routes.api.countries)
+    fetch(routes.api.countries)
       .then((response) => response.json())
       .then((data) => {
         data.forEach((country) => {
           const option = this.createOption(country.name);
-          this.map.form.country.appendChild(option);
+          this.map.country.appendChild(option);
         });
       });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   validate() {
-    registerFieldsRules.rules.forEach((rule, index) => {
+    this.fields.forEach((field, index) => {
       const errors = [];
 
       if (
-        rule.field.value.length < rule.min
-        || rule.field.value.length > rule.max
-      ) {
-        errors.push(rule.field.nextElementSibling.innerText);
-      }
-
-      if (
-        rule.field.name === 'password'
-        && rule.field.value !== registerFieldsRules.rules[index + 1].field.value
+        field.name === 'password'
+        && field.value !== this.fields[index + 1].value
       ) {
         errors.push('Passwords doesn\'t match');
       }
 
       if (errors.length) {
-        rule.field.error();
+        field.error();
         // eslint-disable-next-line no-param-reassign,prefer-destructuring
-        rule.field.nextElementSibling.innerText = errors[0];
-      } else if (rule.field.type === 'text' || rule.field.type === 'password') {
-        rule.field.safe();
+        field.nextElementSibling.innerText = errors[0];
+      } else if (field.type === 'text' || field.type === 'password') {
+        field.safe();
       }
     });
 
     return !document.querySelector('.is-invalid');
   }
 
-  // eslint-disable-next-line class-methods-use-this
   createOption(value) {
     const option = document.createElement('option');
     option.innerText = value;
@@ -111,15 +102,27 @@ export default class Register extends BaseComponent {
 
   showImage(src) {
     this.map.imagePreview.style.display = 'block';
-    this.map.imagePreview.querySelector('img').setAttribute('src', src);
+    this.map.imagePreview.firstElementChild.setAttribute('src', src);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get map() {
     return {
-      form: id('register-form'),
-      imagePreview: id('image-preview'),
-      avatar: id('avatar'),
+      form: this.findById('register-form'),
+      country: this.findById('country'),
+      imagePreview: this.findById('image-preview'),
+      avatar: this.findById('avatar'),
     };
   }
+
+  get fields() {
+    return [
+      this.findById('firstname'),
+      this.findById('lastname'),
+      this.findById('email'),
+      this.findById('password'),
+      this.findById('password_confirm'),
+    ];
+  }
 }
+
+export default Register;

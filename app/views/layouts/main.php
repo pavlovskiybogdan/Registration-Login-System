@@ -26,7 +26,9 @@ use Framework\Application;
 <body>
     <nav class="top-nav d-flex mb-5">
         <div class="top-nav__left">
-            <span><a href="/">App</a></span>
+            <span>
+              <a href="/">App</a>
+            </span>
         </div>
         <div class="top-nav__right ml-auto mr-5">
             <span id="change-language-trigger"><?= _('Language') ?></span>
@@ -36,8 +38,12 @@ use Framework\Application;
 
     <div class="choose-language-block closed" id="lang-block">
         <ul>
-            <li class="<?= Application::$app->localization->isEnglishLang ? 'chosen' : '' ?>" data-lang="en_US">English</li>
-            <li class="<?= Application::$app->localization->isRussianLang ? 'chosen' : '' ?>" data-lang="ru_RU"><?= _('Russian') ?></li>
+            <li class="<?= Application::$app->localization->isEnglishLang ? 'chosen' : '' ?>" data-lang="en_US">
+              English
+            </li>
+            <li class="<?= Application::$app->localization->isRussianLang ? 'chosen' : '' ?>" data-lang="ru_RU">
+                <?= _('Russian') ?>
+            </li>
         </ul>
     </div>
 

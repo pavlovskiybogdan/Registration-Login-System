@@ -9,6 +9,9 @@ export default {
   user: {
     checkEmail: '/check-user-email',
   },
+  language: {
+    change: '/change-language',
+  },
   api: {
     countries: 'https://restcountries.eu/rest/v2/all',
   },

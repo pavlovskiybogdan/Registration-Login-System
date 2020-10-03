@@ -1,9 +1,9 @@
-import BaseComponent from './BaseComponent';
-import { id, alert } from '../utils';
+import BaseComponent from '../lib/BaseComponent';
+import routes from '../config/routes.config';
 
 class ChangePassword extends BaseComponent {
   init() {
-    this.form = id('change-password-form');
+    this.form = this.findById('change-password-form');
     if (this.form) {
       this.formSubmitHandler();
     }
@@ -16,9 +16,9 @@ class ChangePassword extends BaseComponent {
         this.form.password.safe();
         const { data } = await this.resetPassRequestResponse();
         if (data) {
-          alert.open();
+          this.openAlert();
         } else {
-          alert.close();
+          this.closeAlert();
         }
       } else {
         this.form.password.error();
@@ -27,7 +27,7 @@ class ChangePassword extends BaseComponent {
   }
 
   async resetPassRequestResponse() {
-    return axios.post(this.routes.auth.reset, new FormData(this.form));
+    return axios.post(routes.auth.reset, new FormData(this.form));
   }
 
   get isValidData() {

@@ -8,5 +8,8 @@
     "FileReader": "readonly",
     "fetch": "readonly",
     "axios": "readonly"
+  },
+  "rules": {
+    "class-methods-use-this": "off"
   }
 }

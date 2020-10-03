@@ -20,19 +20,43 @@
 
         <div class="form-group col-md-6">
             <label for="firstname"><?= _('First Name') ?>*</label>
-            <input type="text" id="firstname" name="firstname" class="form-control" required />
+            <input
+                type="text"
+                id="firstname"
+                minlength="3"
+                maxlength="50"
+                name="firstname"
+                class="form-control"
+                required
+            />
             <strong class="invalid-feedback"><?= _('It\'s not valid first name') ?></strong>
         </div>
 
         <div class="form-group col-md-6">
             <label for="lastname"><?= _('Last Name') ?>*</label>
-            <input type="text" id="lastname" name="lastname" class="form-control" required />
+            <input
+                type="text"
+                id="lastname"
+                minlength="3"
+                maxlength="50"
+                name="lastname"
+                class="form-control"
+                required
+            />
             <strong class="invalid-feedback"><?= _('It\'s not valid last name') ?></strong>
         </div>
 
         <div class="form-group col-md-6">
             <label for="email"><?= _('Email') ?>*</label>
-            <input type="email" id="email" name="email" class="form-control" required />
+            <input
+                type="email"
+                id="email"
+                minlength="5"
+                maxlength="50"
+                name="email"
+                class="form-control"
+                required
+            />
             <strong class="invalid-feedback"><?= _('It\'s not valid email') ?></strong>
         </div>
 
@@ -44,13 +68,29 @@
 
         <div class="form-group col-md-6">
             <label for="password"><?= _('Password') ?>*</label>
-            <input type="password" id="password" name="password" class="form-control" required />
+            <input
+                type="password"
+                id="password"
+                minlength="6"
+                maxlength="50"
+                name="password"
+                class="form-control"
+                required
+            />
             <strong class="invalid-feedback"><?= _('Unsafe password') ?></strong>
         </div>
 
         <div class="form-group col-md-6">
             <label for="password_confirm"><?= _('Confirm password') ?>*</label>
-            <input type="password" id="password_confirm" name="password_confirm" class="form-control" required />
+            <input
+                type="password"
+                id="password_confirm"
+                minlength="6"
+                maxlength="50"
+                name="password_confirm"
+                class="form-control"
+                required
+            />
             <strong class="invalid-feedback"><?= _('Unsafe password') ?></strong>
         </div>
 

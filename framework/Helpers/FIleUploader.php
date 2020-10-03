@@ -11,7 +11,7 @@ namespace Framework\Helpers;
 class FIleUploader
 {
     const AVATAR_PATH = '/images/avatars/';
-    const DEFAULT_AVATAR_PATH = BASE_PATH . '/app/assets/images/avatar.png';
+    const DEFAULT_AVATAR_PATH = BASE_PATH . '/app/assets/images/default-avatar.png';
 
     /**
      * Uploaded files directory

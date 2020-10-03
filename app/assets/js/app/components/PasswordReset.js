@@ -1,9 +1,9 @@
-import BaseComponent from './BaseComponent';
-import { id, alert } from '../utils';
+import BaseComponent from '../lib/BaseComponent';
+import routes from '../config/routes.config';
 
-export default class PasswordReset extends BaseComponent {
+class PasswordReset extends BaseComponent {
   init() {
-    this.form = id('password-reset-form');
+    this.form = this.findById('password-reset-form');
     if (this.form) {
       this.formSubmitHandler();
     }
@@ -20,16 +20,18 @@ export default class PasswordReset extends BaseComponent {
 
   triggerError() {
     this.form.email.error();
-    alert.close();
+    this.closeAlert();
   }
 
   successMessage() {
     this.form.email.safe();
-    alert.open();
+    this.openAlert();
   }
 
   async isSuccessPasswordReset() {
-    const { data } = await axios.post(this.routes.auth.send, { email: this.form.email.value });
+    const { data } = await axios.post(routes.auth.send, { email: this.form.email.value });
     return Boolean(data);
   }
 }
+
+export default PasswordReset;

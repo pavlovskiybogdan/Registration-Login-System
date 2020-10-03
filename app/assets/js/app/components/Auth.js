@@ -1,9 +1,9 @@
-import BaseComponent from './BaseComponent';
-import { id } from '../utils';
+import BaseComponent from '../lib/BaseComponent';
+import routes from '../config/routes.config';
 
 class Auth extends BaseComponent {
   init() {
-    this.form = id('login-form');
+    this.form = this.findById('login-form');
     if (this.form) {
       this.formSubmitHandler();
     }
@@ -12,9 +12,9 @@ class Auth extends BaseComponent {
   formSubmitHandler() {
     this.form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const { data } = await axios.post(this.routes.auth.login, new FormData(this.form));
+      const { data } = await axios.post(routes.auth.login, new FormData(this.form));
       if (data) {
-        window.location.href = this.routes.auth.profile;
+        window.location.href = routes.auth.profile;
       } else {
         this.form.email.error();
       }

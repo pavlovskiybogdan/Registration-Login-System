@@ -1,1 +1,3 @@
-404
+<div class="error-page">
+    404
+</div>

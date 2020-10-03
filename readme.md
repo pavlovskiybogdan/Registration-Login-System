@@ -5,7 +5,7 @@ Registration and authorization system in pure PHP and JavaScript.
 - Install package managers:
 ```bash
 composer install
-npm install
+yarn install
 ```
 - Give permissions:
 ```bash

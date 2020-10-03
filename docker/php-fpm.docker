@@ -3,6 +3,12 @@ FROM php:7.4-fpm
 RUN apt-get update && apt-get install -y libmcrypt-dev mariadb-client gettext-base gettext libicu-dev locales \
     && docker-php-ext-install pdo_mysql
 
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get update \
+  && apt-get install -y \
+  nodejs
+RUN npm install -g yarn
+
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN echo "ru_RU.UTF-8 UTF-8" >> /etc/locale.gen
 
