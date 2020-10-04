@@ -88,9 +88,10 @@ class HomeController extends Controller
      */
     public function changeLanguage()
     {
-        if (Application::$app->request->isPost) {
-            $lang = Application::$app->request->bodyParams->lang;
-            Application::$app->localization->setLanguage($lang);
+        $app = Application::$app;
+
+        if ($app->request->isPost) {
+            $app->localization->setLanguage($app->request->bodyParams->lang);
         }
 
         return View::render404();

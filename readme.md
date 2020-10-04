@@ -1,5 +1,5 @@
-### Auth test task
-Registration and authorization system in pure PHP and JavaScript.
+### Registration and authorization system in pure PHP and JavaScript
+
 #### Local Setup:
 - Setup .env file (copy from .env.example)
 - Install package managers:

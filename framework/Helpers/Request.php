@@ -54,6 +54,14 @@ class Request extends Component
     }
 
     /**
+     * @return string
+     */
+    public function getFullHost(): string
+    {
+        return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
+    }
+
+    /**
      * @return array|object
      */
     public function getBodyParams()

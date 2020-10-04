@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Framework\View;
 
+use Framework\Application;
+
 /**
  * Class View
  * @package Framework\View
@@ -16,7 +18,7 @@ class View
     public string $currentView;
 
     /**
-     * View variables
+     * View file variables
      */
     public array $viewVars = [];
 
@@ -63,7 +65,7 @@ class View
      */
     public function cssPath(): string
     {
-        return SCRIPT_ROOT . '/app/assets/css/app.css';
+        return Application::$app->request->fullHost . '/app/assets/css/app.css';
     }
 
     /**
@@ -72,7 +74,7 @@ class View
      */
     public function jsPath(): string
     {
-        return SCRIPT_ROOT . '/app/assets/js/dist/app.js';
+        return Application::$app->request->fullHost . '/app/assets/js/dist/app.js';
     }
 
     /**

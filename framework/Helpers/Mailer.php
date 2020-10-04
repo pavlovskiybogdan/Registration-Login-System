@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Framework\Helpers;
 
+use Framework\Application;
 use Swift_SmtpTransport;
 use Swift_Message;
 use Swift_Mailer;
@@ -14,6 +15,8 @@ use Swift_Mailer;
  */
 class Mailer
 {
+    const ERROR_STATUS_CODE = 0;
+
     /**
      * Current Mailer object
      */
@@ -36,31 +39,28 @@ class Mailer
     /**
      * @param string $to
      * @param string $token
-     * @return bool
+     * @return int
      */
-    public function sendResetLink(string $to, string $token): bool
+    public function sendResetLink(string $to, string $token): int
     {
-        $message = "Reset password by this <a href='" . SCRIPT_ROOT . '/change-password/' . $token ."'>link</a>";
-
-        return $this->send($to, 'Reset Password', $message);
+        return $this->send($to, 'Reset Password', $this->buildResetPasswordMessage($token));
     }
 
     /**
      * @param string $to
      * @param string $subject
      * @param string $body
-     * @return bool
+     * @return int
      */
-    public function send(string $to, string $subject, string $body): bool
+    public function send(string $to, string $subject, string $body): int
     {
-        $mailer = new Swift_Mailer($this->transport);
         $message = $this->createMessage($to, $subject, $body);
 
         if ($this->adminEmail === 'username@gmail.com') {
-            return false;
+            return self::ERROR_STATUS_CODE;
         }
 
-        return $mailer->send($message);
+        return (new Swift_Mailer($this->transport))->send($message);
     }
 
     /**
@@ -75,5 +75,16 @@ class Mailer
             ->setFrom([$this->adminEmail => 'Admin'])
             ->setTo([$to])
             ->setBody($body, 'text/html');
+    }
+
+    /**
+     * @param string $token
+     * @return string
+     */
+    private function buildResetPasswordMessage(string $token): string
+    {
+        $link = Application::$app->request->fullHost . '/change-password/' . $token;
+
+        return "Reset password by this <a href='$link'>link</a>";
     }
 }

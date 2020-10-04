@@ -68,9 +68,9 @@ class DB
 
             $this->bind($parameters);
 
-            if(!empty($this->parameters)) {
+            if (!empty($this->parameters)) {
                 foreach ($this->parameters as $param => $value) {
-                    if(is_int($value[1])) {
+                    if (is_int($value[1])) {
                         $type = PDO::PARAM_INT;
                     } else if (is_bool($value[1])) {
                         $type = PDO::PARAM_BOOL;
@@ -98,7 +98,7 @@ class DB
      */
     private function bind(array $parameters)
     {
-        if(!empty($parameters) && is_array($parameters)) {
+        if (!empty($parameters) && is_array($parameters)) {
             $columns = array_keys($parameters);
 
             foreach ($columns as $i => &$column) {
@@ -128,7 +128,7 @@ class DB
         $rawStatement = explode( ' ', preg_replace("/\s+|\t+|\n+/", " ", $query));
         $statement = strtolower($rawStatement[0]);
 
-        if($statement === 'select' || $statement = 'show') {
+        if ($statement === 'select' || $statement = 'show') {
             return $this->statement->fetchAll($mode);
         } elseif ($statement === 'insert' || $statement === 'update' || $statement === 'delete') {
             return $this->statement->rowCount();

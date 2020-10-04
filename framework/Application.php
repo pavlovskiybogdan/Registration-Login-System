@@ -42,9 +42,19 @@ class Application
     /**
      * Set default dependencies
      */
-    public function setDependencies()
+    public function setDependencies(): void
     {
-        self::$app->request = new Request();
-        self::$app->mailer = new Mailer();
+        foreach ($this->dependenciesMap() as $key => $dependency) {
+            self::$app->{$key} = $dependency;
+        }
+    }
+
+    /**
+     * Associative list of app dependencies
+     * @return array
+     */
+    private function dependenciesMap(): array
+    {
+        return ['mailer' => new Mailer(), 'request' => new Request()];
     }
 }
